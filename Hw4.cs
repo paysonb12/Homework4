@@ -33,6 +33,28 @@ public class Hw4
 
 
         // TODO: your code goes here
+      // Read states and cities
+
+      List<string> states = ReadData"states.txt");
+      List<string> cities = ReadData("cities.txt");
+
+      // help method to read data from file
+        private static List<string> ReadData(string filename)
+    {
+        List<string> data = new List<string>();
+
+        using (StreamReader sr = new StreamReader(Path.Combine("Homework4", filename)))
+        {
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                data.Add(line.Trim());
+            }
+        }
+
+        return data;
+    }
+
 
 
 
