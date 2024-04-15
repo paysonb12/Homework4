@@ -108,6 +108,20 @@ public class Hw4
             File.WriteAllLines(fileName, lines);
         }
     }
+public class ZipCodeLocation
+    {
+        public string ZipCode { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
+        // Constructor
+        public ZipCodeLocation(string zipCode, double latitude, double longitude)
+        {
+            ZipCode = zipCode;
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+    }
       
 
      
