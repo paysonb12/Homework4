@@ -34,10 +34,10 @@ public class Hw4
 
 
         // TODO: your code goes here
-        Cities.ReadZipCodes.GetCities();
-        Cities.CommonCityNames.Solution();
-        Cities.LatLon.Solution();
-        Cities.CityStates.Solution();
+        Cities.ReadTheZipCodes.FindCites();
+        Cities.CommonCityNames.Answer();
+        Cities.LatLon.Answer();
+        Cities.CityStates.Answer();
 
         
 
