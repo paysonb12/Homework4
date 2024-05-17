@@ -34,7 +34,7 @@ public class Hw4
 
 
         // TODO: your code goes here
-        Cities.ReadTheZipCodes.FindCites();
+        Cities.ReadZipCodes.FindCities();
         Cities.CommonCityNames.Answer();
         Cities.LatLon.Answer();
         Cities.CityStates.Answer();
