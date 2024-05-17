@@ -62,7 +62,7 @@ namespace Cities
                 }
                 sr.Close();
                 StreamWriter sw = new StreamWriter(File);
-                List<string> list = getCommon(states);
+                List<string> list = findcommon(states);
                 list.Sort();
                 foreach (var city in list)
                 {
