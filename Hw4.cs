@@ -1,5 +1,4 @@
-
-
+using Internal;
 /* 
   Homework#4
 
@@ -16,11 +15,7 @@
   // => Used Pointers from lines 40 to 63 <=
   
 
-using system;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using LatLonMap = System.Collections.Generic.Dictionary<string, System.Tuple<double, double>>;
+using System;
 
 public class Hw4
 {
@@ -39,96 +34,10 @@ public class Hw4
 
 
         // TODO: your code goes here
-      // Read states and cities
-       string zipCodesFile = "zipcodes.txt";
-            string zipsFile = "zips.txt";
-
-            // Read data files
-            List<string> zipCodesData = File.ReadAllLines(zipCodesFile).ToList();
-            List<string> zipsData = File.ReadAllLines(zipsFile).ToList();
-
-            // Process data
-            var zipCodeLocations = ProcessZipCodes(zipCodesData);
-            var latLonMap = GenerateLatLonMap(zipsData, zipCodeLocations);
-
-            // Write output file
-            WriteToFile("LatLon.txt", latLonMap);
-        }
-
-        // Method to process zip code data
-        public static List<ZipCodeLocation> ProcessZipCodes(List<string> zipCodesData)
-        {
-            List<ZipCodeLocation> zipCodeLocations = new List<ZipCodeLocation>();
-
-            foreach (var line in zipCodesData.Skip(1)) // Skip header line
-            {
-                string[] parts = line.Split('\t');
-                string zipCode = parts[1]; // Zipcode is the second field
-
-                // Add error handling for latitude and longitude parsing
-                double latitude, longitude;
-                if (!double.TryParse(parts[6], out latitude) || !double.TryParse(parts[7], out longitude))
-                {
-                    Console.WriteLine($"Error parsing latitude or longitude for zip code {zipCode}. Skipping this entry.");
-                    continue; // Skip this entry and move to the next one
-                }
-
-                zipCodeLocations.Add(new ZipCodeLocation(zipCode, latitude, longitude));
-            }
-
-            return zipCodeLocations;
-        }
-
-        // Method to generate latitude-longitude map
-        public static LatLonMap GenerateLatLonMap(List<string> zipsData, List<ZipCodeLocation> zipCodeLocations)
-        {
-            LatLonMap latLonMap = new LatLonMap();
-
-            foreach (var zipCode in zipsData)
-            {
-                // Skip 
-                var location = zipCodeLocations.FirstOrDefault(z => z.ZipCode == zipCode);
-                if (location == null)
-                {
-                    Console.WriteLine($"Location data not found for zip code: {zipCode}. Skipping.");
-                    continue;
-                }
-
-                // Add latitude and longitude to the map
-                latLonMap.Add(zipCode, Tuple.Create(location.Latitude, location.Longitude));
-            }
-
-            return latLonMap;
-        }
-
-        // Method to write latitude-longitude map to file
-        public static void WriteToFile(string fileName, LatLonMap latLonMap)
-        {
-            var lines = latLonMap.Select(kv => $"{kv.Key} {kv.Value.Item1} {kv.Value.Item2}");
-            File.WriteAllLines(fileName, lines);
-        }
-    }
-public class ZipCodeLocation
-    {
-        public string ZipCode { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-
-        // Constructor
-        public ZipCodeLocation(string zipCode, double latitude, double longitude)
-        {
-            ZipCode = zipCode;
-            Latitude = latitude;
-            Longitude = longitude;
-        }
-    }
-      
-
-     
-
-
-
-
+        Cities.ReadZipCodes.GetCities();
+        Cities.CommonCityNames.Solution();
+        Cities.LatLon.Solution();
+        Cities.CityStates.Solution();
 
         
 
